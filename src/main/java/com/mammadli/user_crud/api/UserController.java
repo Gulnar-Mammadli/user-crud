@@ -2,6 +2,7 @@ package com.mammadli.user_crud.api;
 
 import com.mammadli.user_crud.db.dto.UserDto;
 import com.mammadli.user_crud.db.dto.UserGetDto;
+import com.mammadli.user_crud.db.dto.UserUpdateDto;
 import com.mammadli.user_crud.db.entity.User;
 import com.mammadli.user_crud.services.UserServices;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
 public class UserController {
-
     private final UserServices userServices;
 
     @PostMapping
@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @PutMapping("/userId/{userId}")
-    ResponseEntity<User> update(@PathVariable String userId){
-        return ResponseEntity.ok(userServices.update(userId));
+    ResponseEntity<User> update(@RequestBody UserUpdateDto userUpdateDto, @PathVariable String userId){
+        return ResponseEntity.ok(userServices.update(userUpdateDto,userId));
     }
 
     @GetMapping("/userId/{userId}")
