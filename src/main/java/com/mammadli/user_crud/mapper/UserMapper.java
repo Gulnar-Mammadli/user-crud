@@ -15,7 +15,7 @@ public interface UserMapper {
 
     User fromUserUpdateDto(UserUpdateDto userUpdateDto);
 
-    UserUpdateDto fromUser(User user);
+    UserUpdateDto mapToUserUpdateDto(User user);
 
     UserGetDto mapToUserGetDto(User user);
 

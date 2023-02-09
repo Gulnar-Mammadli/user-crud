@@ -30,7 +30,7 @@ public class UserServicesImpl implements UserServices {
     public User update(String userId) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
-            UserUpdateDto userDto = userMapper.fromUser(user.get());
+            UserUpdateDto userDto = userMapper.mapToUserUpdateDto(user.get());
             return userRepository.save(userMapper.fromUserUpdateDto(userDto));
         }
         return null;
