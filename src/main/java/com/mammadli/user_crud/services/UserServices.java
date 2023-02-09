@@ -1,6 +1,7 @@
 package com.mammadli.user_crud.services;
 
 import com.mammadli.user_crud.db.dto.UserDto;
+import com.mammadli.user_crud.db.dto.UserGetDto;
 import com.mammadli.user_crud.db.entity.User;
 
 public interface UserServices {
@@ -9,7 +10,7 @@ public interface UserServices {
 
     User update(String userId);
 
-    User getUser(String userId);
+    UserGetDto getUser(String userId);
 
     Void deleteUser(String userId);
 }
