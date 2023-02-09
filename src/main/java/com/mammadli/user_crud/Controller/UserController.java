@@ -1,6 +1,7 @@
 package com.mammadli.user_crud.Controller;
 
 import com.mammadli.user_crud.db.dto.UserDto;
+import com.mammadli.user_crud.db.dto.UserGetDto;
 import com.mammadli.user_crud.db.entity.User;
 import com.mammadli.user_crud.services.UserServices;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/userId/{userId}")
-    ResponseEntity<User> getUser(@PathVariable String userId){
+    ResponseEntity<UserGetDto> getUser(@PathVariable String userId){
         return ResponseEntity.ok(userServices.getUser(userId));
     }
 
