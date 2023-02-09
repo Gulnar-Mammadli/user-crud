@@ -1,6 +1,8 @@
 package com.mammadli.user_crud.services.impl;
 
 import com.mammadli.user_crud.db.dto.UserDto;
+import com.mammadli.user_crud.db.dto.UserGetDto;
+import com.mammadli.user_crud.db.dto.UserUpdateDto;
 import com.mammadli.user_crud.db.entity.User;
 import com.mammadli.user_crud.db.repository.UserRepository;
 import com.mammadli.user_crud.mapper.UserMapper;
@@ -26,19 +28,24 @@ public class UserServicesImpl implements UserServices {
 
     @Override
     public User update(String userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            UserUpdateDto userDto = userMapper.fromUser(user.get());
+            return userRepository.save(userMapper.fromUserUpdateDto(userDto));
+        }
         return null;
     }
 
     @Override
-    public User getUser(String userId) {
+    public UserGetDto getUser(String userId) {
         Optional<User> user = userRepository.findById(userId);
-        return user.orElse(null);
+        return user.map(userMapper::mapToUserGetDto).orElse(null);
     }
 
     @Override
     public Void deleteUser(String userId) {
         Optional<User> user = userRepository.findById(userId);
-        if(user.isPresent()){
+        if (user.isPresent()) {
             userRepository.deleteById(user.get().getId());
             userRepository.save(user.get());
         }
