@@ -1,4 +1,4 @@
-package com.mammadli.user_crud.Controller;
+package com.mammadli.user_crud.api;
 
 import com.mammadli.user_crud.db.dto.UserDto;
 import com.mammadli.user_crud.db.dto.UserGetDto;
